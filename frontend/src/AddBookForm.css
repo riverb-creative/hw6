@@ -1,0 +1,11 @@
+input[type='number'] {
+    width: 35%;
+} 
+
+form {
+    text-align: center;
+}
+
+h3 {
+    text-align: center;
+}
