@@ -13,6 +13,7 @@ const AddBookForm = ({addBook}) => {
     const [theBookAvgStar, setTheBookAvgStar] = useState("");
     const [theBookGenre, setTheBookGenre] = useState("");
     const [theBookEbookOption, setTheBookEbookOption] = useState(false);
+    const [success, setSuccess] = useState("");
 
     const handleRadioChange = (event) => {
         setTheBookEbookOption(event.target.value === 'true');
@@ -30,8 +31,16 @@ const AddBookForm = ({addBook}) => {
             genre: theBookGenre.split(", "),
             eBook: theBookEbookOption
         }
-   
-        addBook(newBook);
+
+            fetch("http://localhost:3000/books", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(newBook)
+        })
+        .then(response => response.json())
+        .then(data => setSuccess(data.message));
 
         setTheBookTitle("");
         setTheBookAuthor("");

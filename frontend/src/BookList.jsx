@@ -4,7 +4,7 @@
  * a component made up of individual Book components
  */
 
-import Book from './Book';
+import Book from './pages/Book';
 
 const BookList = ({books, deleteBook, updateBook}) => {
     //console.log("This is:", deleteBook);

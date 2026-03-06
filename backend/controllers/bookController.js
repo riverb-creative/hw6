@@ -56,3 +56,17 @@ exports.editBook = async(request, response) => {
         response.status(500).json({message: "failure", error: errMsg});
     }
 }
+
+//get book by genre
+exports.getBookByGenre = async(request, response) => {
+    const theGenre = request.params.theGenre;
+    if(theGenre) {
+        try {
+            const books = await Book.find({genre: theGenre});
+            response.status(200).json(books);
+        }
+        catch (errMsg) {
+            response.status(400).json({error: "No such genre or server error - " + errMsg});
+        }
+    }
+}

@@ -19,6 +19,11 @@ router.get("/", (request, response) => {
     bookController.getAllBooks(request, response);
 });
 
+//method    =   GET
+//path      =   http://localhost:3000/books/:theGenre
+//response  =   book data for the document that matches the genre
+router.get("/:theGenre", bookController.getBookByGenre);
+
 
 //method    =   POST
 //path      =   http://localhost:3000/books
