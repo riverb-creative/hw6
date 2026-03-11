@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
+import useFetch from '../hooks/useFetch';
 
 const UpdateBook = () => {
     const [bookId, setBookId] = useState("");
-    const [books, setBooks] = useState([]);
+    //const [books, setBooks] = useState([]);
     const [editBook, setEditBook] = useState(false);
     const [updateBookTitle, setUpdateBookTitle] = useState("");
     const [updateBookAuthor, setUpdateBookAuthor] = useState("");
@@ -12,6 +13,8 @@ const UpdateBook = () => {
     const [updateEbookOption, setUpdateEbookOption] = useState(false);
     const [updateSuccess, setUpdateSuccess] = useState("");
     const [updatedBookData, setUpdatedBookData] = useState({});
+
+    const {data, message, loading, error} = useFetch("http://localhost:3000/books");
 
      const handleRadioChange = (event) => {
         setUpdateEbookOption(event.target.value === 'true');
@@ -28,12 +31,13 @@ const UpdateBook = () => {
     }
     */
 
-        useEffect (() => {
-        fetch("http://localhost:3000/books")
-        .then(response => response.json())
-        .then(data => setBooks( data ))
-    }, []);
-
+    /** 
+            useEffect (() => {
+            fetch("http://localhost:3000/books")
+            .then(response => response.json())
+            .then(data => setBooks( data ))
+        }, []);
+    */
     const handleEdit = (bookId) => {
         setEditBook(true);
         setBookId(bookId);
@@ -120,7 +124,7 @@ const UpdateBook = () => {
                     </>
                 ) : ( 
                <> 
-               {books.map((book, index) => (
+               {data.map((book, index) => (
                 <>
                  <header>
                     <h3 key={book.index}>{book.title}</h3>

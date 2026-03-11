@@ -6,7 +6,7 @@
 import { useState } from 'react';
 import './AddBookForm.css'
 
-const AddBookForm = ({addBook}) => {
+const AddBookForm = () => {
     const [theBookTitle, setTheBookTitle] = useState("");
     const [theBookAuthor, setTheBookAuthor] = useState("");
     const [theBookDate, setTheBookDate] = useState("");

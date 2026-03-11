@@ -4,19 +4,25 @@
  */
 
 import { useEffect, useState } from 'react'
+import useFetch from '../hooks/useFetch';
 
 const Book = () => {
     const [deleteId, setDeleteId] = useState("");
-    const [books, setBooks] = useState([]);
+    //const [books, setBooks] = useState([]);
     const [deleteSuccess, setDeleteSuccess] = useState("");
     const [deletedBookData, setDeletedBookData] = useState({});
 
-        useEffect (() => {
+    const {data, message, loading, error} = useFetch("http://localhost:3000/books");
+
+    console.log(data);
+
+       /*
+    useEffect (() => {
         fetch("http://localhost:3000/books")
         .then(response => response.json())
         .then(data => setBooks( data ))
     }, []);
-
+*/
     
 
     const handleSubmit = (event) => {
@@ -33,7 +39,7 @@ const Book = () => {
 
     return (
                <form onSubmit={handleSubmit}>   
-               {books.map((book, index) => (
+               {data.map((book, index) => (
                 <>
                 <header>
                     <h3>{book.title}</h3>

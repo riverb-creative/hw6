@@ -1,7 +1,10 @@
+import { useStore } from "../contexts/StoreContext"
+
 const Home = () => {
+    const { storeName } = useStore();
     return (
         <main>
-            <h2>Welcome to the Bookstore!</h2>
+            <h2>Welcome to { storeName }!</h2>
             <p>With This Application You Can:</p>
             <ul>
                 <li>View all books available and delete a book through the 

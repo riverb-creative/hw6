@@ -4,20 +4,17 @@
  */
 
 import { useEffect, useState } from 'react'
+import useFetch from '../hooks/useFetch';
 
 const ViewGenre = () => {
 const [genre, setGenre] = useState("");
-const [books, setBooks] = useState([]);
+//const [books, setBooks] = useState([]);
 const [filterBooks, setFilterBooks] = useState([]);
 const [selectGenre, setSelectGenre] = useState(false);
 const [genreSuccess, setGenreSuccess] = useState("");
 const [genreData, setGenreData] = useState({});
 
-        useEffect (() => {
-        fetch("http://localhost:3000/books")
-        .then(response => response.json())
-        .then(data => setBooks( data ))
-    }, []);
+    const {data, message, loading, error} = useFetch("http://localhost:3000/books");
 
      const handleSelect = (genre, book) => {
         setSelectGenre(true);
@@ -60,7 +57,7 @@ const [genreData, setGenreData] = useState({});
             ) : (
                 <>
                 {
-                    books.map(book => (
+                    data.map(book => (
                         {book}
                     ))
                 }
@@ -80,7 +77,7 @@ const [genreData, setGenreData] = useState({});
                 </select>
                 <br />
                 <br />
-                <input onClick = {() => handleSelect(books.genre) } 
+                <input onClick = {() => handleSelect(data.genre) } 
                 type='button' id="btnSubmit" value="View Genre" />
             
             </form>
